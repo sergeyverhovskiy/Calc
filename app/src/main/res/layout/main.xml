@@ -93,13 +93,41 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="5pt"
+        android:layout_marginRight="5pt"
+        android:id="@+id/linlay3"
+        android:layout_marginTop="2pt">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/compare"
+            android:textSize="10pt"
+            android:text="@string/compare">
+
+        </Button>
+
+
+
+
+
+    </LinearLayout>
+
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5pt"
         android:layout_marginRight="5pt"
         android:textSize="12pt"
-        android:layout_marginTop="3pt"
+        android:layout_marginTop="5pt"
         android:id="@+id/tvResult"
         android:gravity="center_horizontal">
 

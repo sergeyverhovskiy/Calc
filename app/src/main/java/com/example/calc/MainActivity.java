@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final int MENU_QUIT_ID = 2;
 
     EditText et1,et2;
-    Button plus, minus, multiply, devide;
+    Button plus, minus, multiply, devide, compare;
     TextView tvResult;
 
     String oper = "";
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         minus = (Button) findViewById(R.id.minus);
         multiply = (Button) findViewById(R.id.multiply);
         devide = (Button) findViewById(R.id.devide);
+        compare = (Button) findViewById(R.id.compare);
 
         tvResult = (TextView) findViewById(R.id.tvResult);
 
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         minus.setOnClickListener(this);
         multiply.setOnClickListener(this);
         devide.setOnClickListener(this);
+        compare.setOnClickListener(this);
 
 
 
@@ -84,6 +86,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(MainActivity.this, "Делить на 0 нельзя",Toast.LENGTH_SHORT).show();
                 else   result = num1 / num2;
                 break;
+            case R.id.compare:
+                if (num1 > num2)
+                       oper = ">";
+                else if (num1 < num2)
+                       oper = "<";
+                else oper = "=";
             default:
                 break;
         }
@@ -91,6 +99,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (num2 == 0 && oper == "/")
             tvResult.setText(num1 + " " + oper +" " + num2 + " = " + "ERROR!         Делить на 0 нельзя!");
+        else if (oper == "<" || oper == ">" || oper == "=")
+            tvResult.setText(num1 + " " + oper + " " + num2);
         else
             tvResult.setText(num1 + " " + oper +" " + num2 + " = " + result);
 
