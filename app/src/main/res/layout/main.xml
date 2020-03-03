@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:id="@+id/linlay1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10pt"
+        android:layout_marginTop="40pt"
         android:layout_marginRight="10pt"
-        android:layout_marginTop="40pt">
+        android:orientation="horizontal">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/et1"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginRight="5pt"
+            android:layout_weight="1"
             android:inputType="numberDecimal">
 
         </EditText>
 
         <EditText
+            android:id="@+id/et2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/et2"
-            android:layout_weight="1"
             android:layout_marginLeft="5pt"
+            android:layout_weight="1"
             android:inputType="numberDecimal">
 
         </EditText>
@@ -40,102 +40,93 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linlay2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="5pt"
+        android:layout_marginTop="10pt"
         android:layout_marginRight="5pt"
-        android:id="@+id/linlay2"
-        android:layout_marginTop="10pt">
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/plus"
-            android:textSize="10pt"
-            android:text="+">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="+"
+            android:textSize="10pt">
 
         </Button>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/minus"
-            android:textSize="10pt"
-            android:text="-">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="-"
+            android:textSize="10pt">
 
         </Button>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:id="@+id/multiply"
-            android:textSize="10pt"
-            android:text="*">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="*"
+            android:textSize="10pt">
 
         </Button>
 
 
         <Button
+            android:id="@+id/divide"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/devide"
-            android:textSize="10pt"
-            android:text="/">
+            android:text="/"
+            android:textSize="10pt">
 
         </Button>
-
 
 
     </LinearLayout>
 
 
     <LinearLayout
+        android:id="@+id/linlay3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="5pt"
+        android:layout_marginTop="2pt"
         android:layout_marginRight="5pt"
-        android:id="@+id/linlay3"
-        android:layout_marginTop="2pt">
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/compare"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:id="@+id/compare"
-            android:textSize="10pt"
-            android:text="@string/compare">
+            android:text="@string/compare"
+            android:textSize="10pt">
 
         </Button>
 
 
-
-
-
     </LinearLayout>
-
 
 
     <TextView
+        android:id="@+id/tvResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5pt"
-        android:layout_marginRight="5pt"
-        android:textSize="12pt"
         android:layout_marginTop="5pt"
-        android:id="@+id/tvResult"
-        android:gravity="center_horizontal">
+        android:layout_marginRight="5pt"
+        android:gravity="center_horizontal"
+        android:textSize="12pt">
 
     </TextView>
-
-
-
-
 
 
 </LinearLayout>

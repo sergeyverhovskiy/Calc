@@ -4,113 +4,67 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.calc.calculator.Calculator;
+import com.example.calc.calculator.CalculatorImpl;
+import com.example.calc.calculator.Operator;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    final int MENU_RESET_ID = 1;
-    final int MENU_QUIT_ID = 2;
+    private final static int MENU_RESET_ID = 1;
+    private final static int MENU_QUIT_ID = 2;
 
-    EditText et1,et2;
-    Button plus, minus, multiply, devide, compare;
-    TextView tvResult;
+    private final Calculator calculator = new CalculatorImpl();
 
-    String oper = "";
+    private EditText leftOperandEditText, rightOperandEditText;
+    private TextView resultTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        et1 = (EditText) findViewById(R.id.et1);
-        et2 = (EditText) findViewById(R.id.et2);
+        leftOperandEditText = findViewById(R.id.et1);
+        rightOperandEditText = findViewById(R.id.et2);
 
-        plus = (Button) findViewById(R.id.plus);
-        minus = (Button) findViewById(R.id.minus);
-        multiply = (Button) findViewById(R.id.multiply);
-        devide = (Button) findViewById(R.id.devide);
-        compare = (Button) findViewById(R.id.compare);
+        Button plusButton = findViewById(R.id.plus);
+        Button minusButton = findViewById(R.id.minus);
+        Button multiplyButton = findViewById(R.id.multiply);
+        Button devideButton = findViewById(R.id.divide);
+        Button compareButton = findViewById(R.id.compare);
 
-        tvResult = (TextView) findViewById(R.id.tvResult);
+        resultTextView = findViewById(R.id.tvResult);
 
-        plus.setOnClickListener(this);
-        minus.setOnClickListener(this);
-        multiply.setOnClickListener(this);
-        devide.setOnClickListener(this);
-        compare.setOnClickListener(this);
-
-
-
+        plusButton.setOnClickListener(this);
+        minusButton.setOnClickListener(this);
+        multiplyButton.setOnClickListener(this);
+        devideButton.setOnClickListener(this);
+        compareButton.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View v) {
-
-        float num1 = 0;
-        float num2 = 0;
-        float result = 0;
-
-        if (TextUtils.isEmpty(et1.getText().toString())
-                ||TextUtils.isEmpty(et2.getText().toString())) {
-            return;
-        }
-
-        num1 = Float.parseFloat(et1.getText().toString());
-        num2 = Float.parseFloat(et2.getText().toString());
-
-        switch (v.getId()) {
-
-            case R.id.plus:
-                oper = "+";
-                result = num1 + num2;
-                break;
-            case R.id.minus:
-                oper = "-";
-                result = num1 - num2;
-                break;
-            case R.id.multiply:
-                oper = "*";
-                result = num1 * num2;
-                break;
-            case R.id.devide:
-                oper = "/";
-                if (num2 == 0)
-                    Toast.makeText(MainActivity.this, "Делить на 0 нельзя",Toast.LENGTH_SHORT).show();
-                else   result = num1 / num2;
-                break;
-            case R.id.compare:
-                if (num1 > num2)
-                       oper = ">";
-                else if (num1 < num2)
-                       oper = "<";
-                else oper = "=";
-            default:
-                break;
-        }
-
-
-        if (num2 == 0 && oper == "/")
-            tvResult.setText(num1 + " " + oper +" " + num2 + " = " + "ERROR!         Делить на 0 нельзя!");
-        else if (oper == "<" || oper == ">" || oper == "=")
-            tvResult.setText(num1 + " " + oper + " " + num2);
-        else
-            tvResult.setText(num1 + " " + oper +" " + num2 + " = " + result);
-
+        resultTextView.setText(
+                calculator.calculateResult(
+                        leftOperandEditText.getText().toString(),
+                        rightOperandEditText.getText().toString(),
+                        getOperatorForButton(v.getId())
+                )
+        );
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        menu.add(0,MENU_RESET_ID,0,"Reset");
-        menu.add(0,MENU_QUIT_ID,0,"Quit");
+        menu.add(0, MENU_RESET_ID, 0, "Reset");
+        menu.add(0, MENU_QUIT_ID, 0, "Quit");
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -119,9 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case MENU_RESET_ID:
-                et1.setText("");
-                et2.setText("");
-                tvResult.setText("");
+                clearInput();
                 break;
             case MENU_QUIT_ID:
                 finish();
@@ -129,6 +81,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void clearInput() {
+        leftOperandEditText.setText("");
+        rightOperandEditText.setText("");
+        resultTextView.setText("");
+    }
+
+    private Operator getOperatorForButton(int buttonId) {
+        switch (buttonId) {
+            case R.id.plus:
+                return Operator.PLUS;
+            case R.id.minus:
+                return Operator.MINUS;
+            case R.id.multiply:
+                return Operator.MULTIPLY;
+            case R.id.divide:
+                return Operator.DIVIDE;
+            case R.id.compare:
+                return Operator.COMPARE;
+        }
+        return Operator.UNKNOWN;
     }
 }
 
